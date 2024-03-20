@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     setContent {
       NotesTheme {
-        NotesScreen(viewModel = viewModel)
+        MainActivityScreen(viewModel = viewModel)
       }
     }
   }
