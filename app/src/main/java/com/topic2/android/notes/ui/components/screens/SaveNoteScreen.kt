@@ -24,6 +24,17 @@ import com.topic2.android.notes.viewmodel.MainViewModel
 fun SaveNoteScreen(viewModel: MainViewModel) {
 
 }
+
+@Composable
+private fun SaveNoteTopBar(
+    isEditingMode: Boolean,
+    onBackClick: () -> Unit,
+    onOpenColorPickerClick: () -> Unit,
+    OnDeleteNoteClick: () -> Unit
+) {
+
+}
+
 @Composable
 private fun ColorPicker(
     colors: List<ColorModel>,
