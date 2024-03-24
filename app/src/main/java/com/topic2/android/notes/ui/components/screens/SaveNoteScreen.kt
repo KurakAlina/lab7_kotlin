@@ -11,6 +11,7 @@ import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Switch
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
@@ -110,6 +111,45 @@ private fun SaveNoteTopAppBar(
         }
     )
 }
+@Composable
+private fun NoteCheckOption(
+    isChecked: Boolean,
+    onCheckedChange: (Boolean) -> Unit
+) {
+    Row (
+        Modifier
+            .padding(8.dp)
+            .padding(top = 16.dp)
+    ) {
+        Text(
+            text = "Can note be checked off?", modifier = Modifier.weight(1f)
+        )
+        Switch(
+            checked = isChecked,
+            onCheckedChange = onCheckedChange, modifier = Modifier.padding(start = 8.dp)
+        )
+    }
+}
+
+@Composable
+private fun PickedColor(color: ColorModel) {
+    Row (
+        Modifier
+            .padding(8.dp)
+            .padding(top = 16.dp)
+    ) {
+        Text(
+            text = "Picked color", modifier = Modifier
+                .weight(1f)
+                .align(Alignment.CenterVertically)
+        )
+        NoteColor(
+            color = Color.fromHex(color.hex), size = 40.dp,
+            border = 1.dp,
+            modifier = Modifier.padding(4.dp)
+        )
+    }
+}
 
 @Composable
 private fun ColorPicker(
@@ -198,4 +238,14 @@ fun SaveNoteTopAppBarPreview() {
         onOpenColorPickerClick = {},
         onDeleteNoteClick = {}
     )
+}
+@Preview
+@Composable
+fun NoteCheckOptionPreview() {
+    NoteCheckOption(false) {}
+}
+@Preview
+@Composable
+fun PickedColorPreview() {
+    PickedColor(ColorModel.DEFAULT)
 }
