@@ -36,6 +36,7 @@ fun NotesScreen(viewModel: MainViewModel) {
         .observeAsState(listOf())
 
     val scope: CoroutineScope = rememberCoroutineScope()
+    val coroutineScope = rememberCoroutineScope()
     val scaffoldState: ScaffoldState = rememberScaffoldState()
 
     Scaffold(
@@ -101,7 +102,8 @@ fun NotesScreen(viewModel: MainViewModel) {
                     notes = notes, onNoteCheckedChange = {
                         viewModel.onNoteCheckedChange(it)
                     },
-                    onNoteClick = { viewModel.onNoteClick(it) }
+                    onNoteClick = { viewModel.onNoteClick(it) },
+                    isSelected = true
                 )
             }
         }
@@ -113,7 +115,8 @@ fun NotesScreen(viewModel: MainViewModel) {
 private fun NotesList(
     notes: List<NoteModel>,
     onNoteCheckedChange: (NoteModel) -> Unit,
-    onNoteClick: (NoteModel) -> Unit
+    onNoteClick: (NoteModel) -> Unit,
+    isSelected: Boolean
 ) {
     LazyColumn {
         items(count = notes.size) { noteIndex ->
@@ -121,7 +124,8 @@ private fun NotesList(
             Note(
                 note = note,
                 onNoteClick = onNoteClick,
-                onNoteCheckedChange = onNoteCheckedChange
+                onNoteCheckedChange = onNoteCheckedChange,
+                isSelected = isSelected
             )
         }
     }
@@ -137,6 +141,7 @@ private fun NotesListPreview() {
             NoteModel(3, "Note 3", "Content 3", true)
         ),
         onNoteCheckedChange = {},
-        onNoteClick = {}
+        onNoteClick = {},
+        isSelected = true
     )
 }
